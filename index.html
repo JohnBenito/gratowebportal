@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<title>Data Science and Engineering Consulting Services | Grato Analytics</title>
+<head>
+	<link rel="icon" href="img/title_logo.jpg">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightblue;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  top:0px;
+  width:100%;
+  margin: 0px auto;
+  height:84px;
+}
+
+.topnav a {
+  float: right;
+  color: blue;
+  text-align: center;
+  padding: 10px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.topnav a.logo {
+	padding: 0px 0px;
+	margin-top: 0px;
+	float: left;
+}
+.topnav a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content{
+	margin: 90px auto;
+  	margin-left: 25px;
+}
+ul {
+  list-style: none;
+  float: center;
+  margin-top: 5px;
+
+}
+
+ul li::before {
+  content: "\2022";
+  color: red;
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+  margin-top: 5px;
+}
+</style>
+
+<body ng-app="myApp">
+
+<div class="topnav">
+	<a class="logo">
+		<img ng-src="img/grato_logo.jpg">
+	</a>
+	<a href="#/enquire">ENQUIRE</a>
+	<a href="#/datascience">Data Science</a>
+	<a href="#/dataengg">Data Engineering</a>
+	<a href="#/about">About us</a>
+
+</div>
+
+<div class='content' ng-view> </div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
+  $locationProvider.hashPrefix('');
+  $routeProvider
+  .when("/", {
+    templateUrl : "about.html"
+  })
+  .when("/about", {
+    templateUrl : "about.html"
+  })
+  .when("/dataengg", {
+    templateUrl : "dataengg.html"
+  })
+  .when("/datascience", {
+    templateUrl : "datascience.html"
+  })
+  .when("/enquire", {
+    templateUrl : "about.htm"
+  })
+  .otherwise({
+    template : '<h1> Please hold on. We are improving your experience'
+  })
+}]);
+</script>
+
+</body>
+</html>

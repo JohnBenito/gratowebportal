@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>RoutingDemo App</title>
+    </head>
+    <body ng-app='routingDemoApp'>
+      
+        <h2>AngularJS Routing Application</h2>
+        <ul>
+            <li><a href="#/">Default Route</a></li>
+            <li><a href="#/route/1?name=crap&age=33">route with params and query string</a></li>
+            <li><a href="#/blabla">Unknown Route</a></li>
+        </ul>
+          
+        <div ng-view></div>
+        <script src="<a class="vglnk" href="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js" rel="nofollow"><span>https</span><span>://</span><span>ajax</span><span>.</span><span>googleapis</span><span>.</span><span>com</span><span>/</span><span>ajax</span><span>/</span><span>libs</span><span>/</span><span>angularjs</span><span>/</span><span>1</span><span>.</span><span>4</span><span>.</span><span>4</span><span>/</span><span>angular</span><span>.</span><span>js</span></a>"></script>
+        <script src="<a class="vglnk" href="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js" rel="nofollow"><span>https</span><span>://</span><span>ajax</span><span>.</span><span>googleapis</span><span>.</span><span>com</span><span>/</span><span>ajax</span><span>/</span><span>libs</span><span>/</span><span>angularjs</span><span>/</span><span>1</span><span>.</span><span>4</span><span>.</span><span>4</span><span>/</span><span>angular</span><span>-</span><span>route</span><span>.</span><span>js</span></a>"></script>
+        <script>
+            angular.module('routingDemoApp',['ngRoute'])
+            .config(['$routeProvider', function($routeProvider){
+                $routeProvider
+                .when('/',{template:'This is the default Route'})
+                .when('/route/:id',
+                    {
+                        template:'Referred item is {{ctrl.id}}' + ' and passed query-string values are {{ctrl.qStrName}} , {{ctrl.qStrAge}}',
+                        controller: ['$routeParams', function($routeParams) {
+                            var self=this;
+                            self.id = $routeParams.id;
+                            self.qStrName = $routeParams.name;
+                            self.qStrAge = $routeParams.age;
+                        }],
+                        controllerAs: 'ctrl'
+                    })
+                .otherwise({redirectTo:'/'});
+            }]);
+        </script>
+    </body>
+</html>
